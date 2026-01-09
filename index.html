@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="videoContainer">
+        <video id="bgVideo1" class="bg-video active" autoplay muted loop>
+            <source src="assets/video/v1.mp4" type="video/mp4">
+        </video>
+        
+        <video id="bgVideo2" class="bg-video" autoplay muted loop>
+            </video>
+    </div>
+    <div class="overlay"></div>
+
+    <audio id="audioPlayer" loop>
+        <source src="assets/music/Bamboo_Flute.m4a" type="audio/mp4">
+    </audio>
+
+    <div class="timer-container">
+        <div class="timer-wrapper">
+          <button class="font-arrow" onclick="changeTimerFont(-1)">&lt;</button>
+    
+          <h1 id="timer">25:00</h1>
+    
+          <button class="font-arrow" onclick="changeTimerFont(1)">&gt;</button>
+        </div>
+        <p id="status">Ready to focus?</p>
+        
+        <div class="timer-duration-selector">
+            <button onclick="setTimerDuration(15)">15m</button>
+            <button onclick="setTimerDuration(25)" class="active-duration">25m</button>
+            <button onclick="setTimerDuration(45)">45m</button>
+            <button onclick="setTimerDuration(60)">60m</button>
+        </div>
+
+        <div class="timer-controls">
+            <button id="startBtn" onclick="toggleTimer()">Start</button>
+            <button onclick="resetTimer()">Reset</button>
+        </div>
+        <button class="bg-switch-btn" onclick="nextBackground()"> Change View</button>
+    </div>
+
+    <div id="musicSelectorContainer" class="music-selector-container hidden-mobile">
+        <div class="selector-header">Atmosphere</div>
+        <div class="scroll-wheel" id="musicList">
+            </div>
+        <button id="closeMobileMenu" onclick="toggleMobileMenu()">Close</button>
+    </div>
+
+    <div class="miniplayer" onclick="openMobileMenu()">
+        <div class="track-info">
+            <span id="currentTrackName">Rain Song</span>
+        </div>
+        <div class="controls">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" 
+                   oninput="setVolume(this.value)" onclick="event.stopPropagation()">
+            <button id="playBtn" onclick="togglePlay(event)">▶</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
