@@ -329,6 +329,26 @@ button:hover { background: rgba(255, 255, 255, 0.4); }
     background: white;
     cursor: pointer;
 }
+/* FULL SCREEN BUTTON */
+#fullscreenBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100; /* To ensure its above the video overlay */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 24px;
+    padding: 10px;
+    line-height: 1; /* For vertical alignment of the icon */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#fullscreenBtn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
