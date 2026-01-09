@@ -136,6 +136,32 @@ function togglePlay(event) {
         isPlaying = true;
     }
 }
+// --- FULL SCREEN LOGIC ---
+function toggleFullScreen() {
+    const btn = document.getElementById('fullscreenBtn');
+    
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((e) => {
+            console.error(`Error attempting to enable full-screen mode: ${e.message} (${e.name})`);
+        });
+        btn.innerText = "✖";
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        btn.innerText = "⛶";
+    }
+}
+
+// Listen for the 'Esc' key
+document.addEventListener('fullscreenchange', () => {
+    const btn = document.getElementById('fullscreenBtn');
+    if (!document.fullscreenElement) {
+        btn.innerText = "⛶";
+    } else {
+        btn.innerText = "✖";
+    }
+});
 
 // --- VOLUME LOGIC ---
 function setVolume(value) {
@@ -372,6 +398,17 @@ function resetTimer() {
         playBtn.innerText = "▶"
     } // Stop music on reset
 }
+// --- KEYBOARD SHORTCUTS ---
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'f' || event.key === 'F') {
+        toggleFullScreen();
+    }
+    // Press Space to Play/Pause
+    if (event.code === 'Space') {
+        // Prevent the page from scrolling down when space is pressed
+        event.preventDefault(); 
+        togglePlay(event);
+    }
+});
 
-// Run init
 init();
